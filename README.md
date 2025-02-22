@@ -1,5 +1,5 @@
 # Instructions on running
-Clone the repository and run `python3 parser.py`. To run tests, run `python -m unittest test_parser.py -v`. Program uses `flowlog.txt` and `lookuptable.txt` as input, and output is written to `output.txt`.
+Clone the repository and run `python3 parser.py`. To run tests, run `python3 -m unittest test_parser.py -v`. Program uses `flowlog.txt` and `lookuptable.txt` as input, and output is written to `output.txt`.
 
 # Description 
 Write a program that can parse a file containing flow log data and maps each row to a tag based on a lookup table. The lookup table is defined as a csv file, and it has 3 columns, dstport,protocol,tag. The dstport and protocol combination decide what tag can be applied.  
@@ -8,15 +8,15 @@ Write a program that can parse a file containing flow log data and maps each row
 - Input file as well as the file containing tag mappings are plain text (ascii) files  
 - The flow log file size can be up to 10 MB 
 - The lookup file can have up to 10000 mappings 
-- The tags can map to more than one port, protocol combinations.  for e.g. sv_P1 and sv_P2 in the sample above. 
-- The matches should be case insensitive.
+- The tags can map to more than one port, protocol combinations.  for e.g. sv_P1 and sv_P2 in the sample above
+- The matches should be case insensitive
 
 # Assumptions made
-- This program only supports default log format 
-- It does not support custom log format
+- This program only supports default log format, it does not support custom log format
 - Version 2 is the only version supported
-- The flowlog, `flowlog.txt`, has blank lines between each line. This is handled in `open_flowlog()`.
-- outputformat.txt contains the general format that the specifications wanted the output to be in.
+- Machine has python 3.6 or higher installed (as f-strings are being used)
+- The flowlog, `flowlog.txt`, has blank lines between each line. This is handled in `open_flowlog()`
+- `outputformat.txt` contains the general format that the specifications wanted the output to be in
 
 # Thought Process
 Since I know that the dstport and protocol combination are what define the tag, my plan was to read the flowlog file, verify the flowlog version, parse it to obtain the dstport and protocol number, group the corresponding numbers into a tuple, and then return a list of tuples for each line in the flow log.
